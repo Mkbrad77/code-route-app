@@ -27,11 +27,6 @@ export default function LoginPage() {
         if (error) {
           setError(error.message);
         } else if (data.user) {
-          const { error: profileError } = await supabase.from("profiles").insert({ id: data.user.id });
-          if (profileError) {
-            setError("Compte créé, mais le profil n'a pas pu être initialisé. Réessaie de te connecter.");
-            return;
-          }
           if (data.session) {
             router.push("/aujourdhui");
             router.refresh();
